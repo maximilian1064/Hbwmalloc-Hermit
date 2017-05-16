@@ -9,8 +9,8 @@
 #define __need_size_t
 #include <stddef.h>
 
-/* include any machine-specific extensions */
-#include <machine/malloc.h>
+/*[> include any machine-specific extensions <]*/
+//#include <machine/malloc.h>
 
 #ifdef __cplusplus
 extern "C" {
