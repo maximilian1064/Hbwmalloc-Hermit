@@ -44,6 +44,7 @@ __LOCK_INIT_RECURSIVE(static, __malloc_lock_object);
 #endif
 
 void
+__attribute__((weak))
 __malloc_lock (ptr)
      struct _reent *ptr;
 {
@@ -53,6 +54,7 @@ __malloc_lock (ptr)
 }
 
 void
+__attribute__((weak))
 __malloc_unlock (ptr)
      struct _reent *ptr;
 {
