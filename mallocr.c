@@ -302,11 +302,12 @@ extern "C" {
  */
 
 #include <reent.h>
+#include "hsbrk.h"
 
 #define POINTER_UINT unsigned _POINTER_INT
 //#define SEPARATE_OBJECTS
 #define HAVE_MMAP 0
-#define MORECORE(size) _sbrk_r(reent_ptr, (size))
+#define MORECORE(size) _hbmem_sbrk_r(reent_ptr, (size))
 #define MORECORE_CLEARS 0
 #define MALLOC_LOCK __malloc_lock(reent_ptr)
 #define MALLOC_UNLOCK __malloc_unlock(reent_ptr)
