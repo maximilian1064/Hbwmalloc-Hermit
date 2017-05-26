@@ -36,7 +36,7 @@ routines must be careful to avoid causing a thread to wait for a lock
 that it already holds.
 */
 
-#include "malloc.h"
+#include "hbwmalloc.h"
 #include <sys/lock.h>
 
 #ifndef __SINGLE_THREAD__

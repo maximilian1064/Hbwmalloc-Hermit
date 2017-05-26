@@ -389,7 +389,7 @@ not portable.
 #include <_ansi.h>
 #include <reent.h>
 #include <stdlib.h>
-#include "malloc.h"
+#include "hbwmalloc.h"
 
 #include <string.h>
 #include <sys/cdefs.h>
@@ -428,7 +428,7 @@ _DEFUN (_hbw_mstats_r, (ptr, s),
 {
   _REENT_SMALL_CHECK_INIT(ptr);
   fiprintf (_stderr_r (ptr), "Memory allocation statistics %s\n", s);
-  _malloc_stats_r (ptr);
+  _hbw_malloc_stats_r (ptr);
 }
 
 #endif /* !_ELIX_LEVEL || _ELIX_LEVEL >= 2 */
@@ -442,14 +442,14 @@ _PTR
 _DEFUN (hbw_malloc, (nbytes),
 	size_t nbytes)		/* get a block */
 {
-  return _malloc_r (_REENT, nbytes);
+  return _hbw_malloc_r (_REENT, nbytes);
 }
 
 void
 _DEFUN (hbw_free, (aptr),
 	_PTR aptr)
 {
-  _free_r (_REENT, aptr);
+  _hbw_free_r (_REENT, aptr);
 }
 
 /* wrapper for realloc */
@@ -459,7 +459,7 @@ _DEFUN (hbw_realloc, (ap, nbytes),
 	_PTR ap _AND
 	size_t nbytes)
 {
-  return _realloc_r (_REENT, ap, nbytes);
+  return _hbw_realloc_r (_REENT, ap, nbytes);
 }
 
 /* wrapper for calloc */
@@ -469,7 +469,7 @@ _DEFUN (hbw_calloc, (n, size),
 	size_t n _AND
 	size_t size)
 {
-  return _calloc_r (_REENT, n, size);
+  return _hbw_calloc_r (_REENT, n, size);
 }
 
 /* wrapper for reallocf */
@@ -490,7 +490,7 @@ _DEFUN (hbw_memalign, (align, nbytes),
 	size_t align _AND
 	size_t nbytes)
 {
-  return _memalign_r (_REENT, align, nbytes);
+  return _hbw_memalign_r (_REENT, align, nbytes);
 }
 
 /* wrapper for mallinfo, malloc_stats, mallopt */
@@ -498,14 +498,14 @@ _DEFUN (hbw_memalign, (align, nbytes),
 struct mallinfo
 _DEFUN_VOID (hbw_mallinfo)
 {
-  return _mallinfo_r (_REENT);
+  return _hbw_mallinfo_r (_REENT);
 }
 
 #if !defined (_ELIX_LEVEL) || _ELIX_LEVEL >= 2
 void
 _DEFUN_VOID (hbw_malloc_stats)
 {
-  _malloc_stats_r (_REENT);
+  _hbw_malloc_stats_r (_REENT);
 }
 
 int
@@ -513,7 +513,7 @@ _DEFUN (hbw_mallopt, (p, v),
 	int p _AND
 	int v)
 {
-  return _mallopt_r (_REENT, p, v);
+  return _hbw_mallopt_r (_REENT, p, v);
 }
 
 #endif /* !_ELIX_LEVEL || _ELIX_LEVEL >= 2 */
@@ -537,7 +537,7 @@ size_t
 _DEFUN (hbw_malloc_usable_size, (ptr),
 	_PTR ptr)
 {
-  return _malloc_usable_size_r (_REENT, ptr);
+  return _hbw_malloc_usable_size_r (_REENT, ptr);
 }
 
 /* wrapper for vallocs */
@@ -546,14 +546,14 @@ _PTR
 _DEFUN (hbw_valloc, (nbytes),
 	size_t nbytes)
 {
-  return _valloc_r (_REENT, nbytes);
+  return _hbw_valloc_r (_REENT, nbytes);
 }
 
 _PTR
 _DEFUN (hbw_pvalloc, (nbytes),
 	size_t nbytes)
 {
-  return _pvalloc_r (_REENT, nbytes);
+  return _hbw_pvalloc_r (_REENT, nbytes);
 }
 
 /* wrapper for malloc_trim */
@@ -562,7 +562,7 @@ int
 _DEFUN (hbw_malloc_trim, (pad),
 	size_t pad)
 {
-  return _malloc_trim_r (_REENT, pad);
+  return _hbw_malloc_trim_r (_REENT, pad);
 }
 
 
